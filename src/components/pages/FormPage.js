@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
+import { connect } from 'react-redux';
+
+import { simpleAction } from '../../redux/actions/simpleAction'
 
 // css for datepicker
 import "react-datepicker/dist/react-datepicker.css";
 
-const FormPage = () => {
+const FormPage = (props) => {
   const [ date, setDate ] = useState(new Date());
 
   const handleChange = date => {
-    setDate(date)
+    setDate(date);
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.simpleAction()
+    console.log(props.formData)
+  }
+
 
   return(
     <div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <label htmlFor="inputName" className="col-sm-2 col-form-label">Name</label>
           <div className="col-sm-10">
@@ -299,10 +309,16 @@ const FormPage = () => {
           </div>
         </div>
 
+        <input type="submit" name="submit"/>
+
       </form>
 
     </div>
   )
 }
 
-export default FormPage;
+const mapStateToProps = (state) => ({
+  formData: state.simpleReducer.formData,
+})
+
+export default connect(mapStateToProps, { simpleAction })(FormPage);
