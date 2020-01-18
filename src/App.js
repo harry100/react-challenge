@@ -1,12 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import './App.css';
 
-import FormPage from './components/pages/FormPage'
+//routes
+import routes from './routes'
 
 function App() {
   return (
     <div className="App">
-      <FormPage />
+      <Router>
+        <Switch>
+          {routes.map((route, i) => {
+            return <Route key={i} path={route.path} component={route.component} />
+          })}
+        </Switch>
+      </Router>
     </div>
   );
 }
