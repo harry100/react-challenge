@@ -15,9 +15,10 @@ const FormPage = (props) => {
     setDate(date);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = formData => e => {
     e.preventDefault();
-    props.setFormInput('test');
+    console.log(formData);
+    props.setFormInput(formData);
   }
 
   return(
