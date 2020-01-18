@@ -5,11 +5,17 @@ import PropTypes from 'prop-types';
 //action for setting form data
 import { setFormInput } from '../../redux/actions/formAction';
 
+//action for setting errors
+import { setErrors, clearErrors } from '../../redux/actions/errorAction';
+
 //includes
 import FormElements from '../includes/FormElements';
 
+//validation for empty field
+import setError from '../includes/validation';
+
 const FormPage = (props) => {
-  const [ date, setDate ] = useState(new Date());
+  const [ date, setDate ] = useState('');
 
   const handleDateChange = date => {
     setDate(date);
@@ -17,7 +23,9 @@ const FormPage = (props) => {
 
   const handleSubmit = formData => e => {
     e.preventDefault();
-    console.log(formData);
+    formData.date = date;
+    props.clearErrors();
+    props.setErrors(setError(formData))
     props.setFormInput(formData);
   }
 
@@ -27,17 +35,28 @@ const FormPage = (props) => {
         handleDateChange={handleDateChange}
         handleSubmit={handleSubmit}
         date={date}
+        errors={props.errors}
       />
     </div>
   )
 }
 
 FormPage.propTypes = {
-  setFormInput: PropTypes.func.isRequired
+  setFormInput: PropTypes.func.isRequired,
+  setErrors: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  formData: state.formData,
+  errors: state.errors
 })
 
-export default connect(mapStateToProps, { setFormInput })(FormPage);
+export default connect(
+  mapStateToProps,
+  {
+    setFormInput,
+    setErrors,
+    clearErrors
+  }
+)(FormPage);

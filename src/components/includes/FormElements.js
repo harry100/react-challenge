@@ -19,21 +19,24 @@ class FormElements extends Component {
       institution: '',
       nationality: '',
       degree:'',
-      gender: ''
+      gender: '',
     }
   }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(this.state)
   }
 
   render(){
+    const { errors } = this.props;
+
     return(
       <form onSubmit={this.props.handleSubmit(this.state)}>
           <div className="form-group row">
             <label
-              htmlFor="inputName"className="col-sm-2 col-form-label">Name</label>
+              htmlFor="inputName"className="col-sm-2 col-form-label">
+                Name <span style={{color:"red"}}> * </span>
+              </label>
             <div className="col-sm-10">
               <TextField
                 type="text"
@@ -42,12 +45,15 @@ class FormElements extends Component {
                 onChange={this.onChange}
                 name="name"
                 value={this.state.name}
+                error={errors.name}
               />
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="inputNumber" className="col-sm-2 col-form-label">Phone</label>
+            <label htmlFor="inputNumber" className="col-sm-2 col-form-label">
+              Phone <span style={{color:"red"}}> * </span>
+            </label>
             <div className="col-sm-10">
               <TextField
                 type="number"
@@ -56,13 +62,16 @@ class FormElements extends Component {
                 onChange={this.onChange}
                 name="phone"
                 value={this.state.phone}
+                error={errors.phone}
               />
             </div>
           </div>
 
           <fieldset className="form-group">
             <div className="row">
-              <legend className="col-form-label col-sm-2 pt-0">Gender</legend>
+              <legend className="col-form-label col-sm-2 pt-0">
+                Gender <span style={{color:"red"}}> * </span>
+              </legend>
               <div className="col-sm-10 alignment">
                 <div
                   className="form-check form-check-inline"
@@ -95,11 +104,14 @@ class FormElements extends Component {
                   <label className="form-check-label" htmlFor="inlineRadio3"> Other </label>
                 </div>
               </div>
+              {errors.gender && <div className="error-message"> {errors.gender} </div>}
             </div>
           </fieldset>
 
           <div className="form-group row">
-            <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+            <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
+              Email <span style={{color:"red"}}> * </span>
+            </label>
             <div className="col-sm-10">
               <TextField
                 type="email"
@@ -108,12 +120,15 @@ class FormElements extends Component {
                 onChange={this.onChange}
                 name="email"
                 value={this.state.email}
+                error={errors.email}
               />
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="inputAddress" className="col-sm-2 col-form-label"> Address </label>
+            <label htmlFor="inputAddress" className="col-sm-2 col-form-label">
+              Address <span style={{color:"red"}}> * </span>
+            </label>
             <div className="col-sm-10">
               <TextField
                 type="text"
@@ -122,12 +137,15 @@ class FormElements extends Component {
                 onChange={this.onChange}
                 name="address"
                 value={this.state.address}
+                error={errors.address}
               />
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="natiolality" className="col-sm-2 col-form-label"> Nationality </label>
+            <label htmlFor="natiolality" className="col-sm-2 col-form-label">
+              Nationality <span style={{color:"red"}}> * </span>
+            </label>
             <div className="col-sm-10">
               <select
                 className="custom-select form-control"
@@ -329,11 +347,14 @@ class FormElements extends Component {
                 <option value="zambian">Zambian</option>
                 <option value="zimbabwean">Zimbabwean</option>
               </select>
+              {errors.nationality && <div className="error-message"> {errors.nationality} </div>}
             </div>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="inputDate" className="col-sm-2 col-form-label"> Date of Birth </label>
+            <label htmlFor="inputDate" className="col-sm-2 col-form-label">
+              Date of Birth <span style={{color:"red"}}> * </span>
+            </label>
             <div className="col-sm-10 alignment">
               <DatePicker
                 selected={this.props.date}
@@ -341,6 +362,7 @@ class FormElements extends Component {
                 className="form-control"
               />
             </div>
+            {errors.date && <div className="error-message"> {errors.date} </div>}
           </div>
 
           <div className="form-group row">
@@ -377,7 +399,11 @@ class FormElements extends Component {
             </div>
           </div>
 
-          <input type="submit" name="submit"/>
+          <input
+            className="btn btn-primary"
+            type="submit"
+            name="submit"
+          />
 
         </form>
     )
@@ -385,9 +411,10 @@ class FormElements extends Component {
 }
 
 FormElements.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date),
   handleSubmit: PropTypes.func.isRequired,
-  handleDateChange: PropTypes.func.isRequired
+  handleDateChange: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 export default FormElements;

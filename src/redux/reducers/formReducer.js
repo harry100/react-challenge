@@ -1,15 +1,11 @@
 import { SET_FORM_INPUT } from '../types';
 
-const initialState = {
-  formData: {}
-}
+const initialState = {};
 
 export default (state = initialState, action) => {
  switch (action.type) {
   case SET_FORM_INPUT:
-   return {
-    formData: action.payload
-   }
+   return action.payload
   default:
    return state
  }

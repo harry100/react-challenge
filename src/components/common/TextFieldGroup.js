@@ -27,7 +27,7 @@ const TextFieldGroup = ({
         disabled={disabled}
       />
       {info && <small className="form-text text-muted"> {info} </small>}
-      {error && (<div className="invlalid-feedback">{error}</div>)}
+      {error && (<div className="error-message">{error}</div>)}
     </div>
   );
 };
