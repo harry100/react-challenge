@@ -20,6 +20,7 @@ class FormElements extends Component {
       nationality: '',
       degree:'',
       gender: '',
+      modeOfContact: ''
     }
   }
 
@@ -396,6 +397,23 @@ class FormElements extends Component {
                 name='institution'
                 value={this.state.institution}
               />
+            </div>
+          </div>
+
+          <div className="form-group row">
+            <label htmlFor="contact" className="col-sm-2 col-form-label"> Preferred mode of contact </label>
+            <div className="col-sm-10">
+              <select
+                className="custom-select form-control"
+                id="contact"
+                name="modeOfContact"
+                onChange={this.onChange}
+              >
+                <option value="">-- select one --</option>
+                <option value={this.state.phone}> Phone </option>
+                <option value={this.state.email}> Email </option>
+                <option value="">None</option>
+              </select>
             </div>
           </div>
 
