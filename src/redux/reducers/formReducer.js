@@ -1,4 +1,4 @@
-import { SIMPLE_ACTION } from '../types';
+import { SET_FORM_INPUT } from '../types';
 
 const initialState = {
   formData: {}
@@ -6,9 +6,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
  switch (action.type) {
-  case SIMPLE_ACTION:
+  case SET_FORM_INPUT:
    return {
-    result: action.payload
+    formData: action.payload
    }
   default:
    return state

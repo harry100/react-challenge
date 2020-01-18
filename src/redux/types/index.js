@@ -1,1 +1,1 @@
-export const SIMPLE_ACTION = 'SIMPLE ACTION';
+export const SET_FORM_INPUT = 'SET_FORM_INPUT';
