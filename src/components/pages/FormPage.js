@@ -22,16 +22,18 @@ const FormPage = (props) => {
   };
 
   const handleSubmit = formData => e => {
-    const { clearErrors, setErrors, setFormInput, history, errors } = props;
+    const { clearErrors, setErrors, setFormInput, history } = props;
 
     e.preventDefault();
     const dateString = date.toString();
     formData.date = dateString;
     clearErrors();
-    setErrors(setError(formData))
-    if(Object.keys(errors).length === 0){
+    const validationErrors = setError(formData)
+    setErrors(validationErrors)
+
+    if(Object.keys(validationErrors).length === 0){
       setFormInput(formData);
-      history.push('/newpage')
+      history.push('/newpage');
     }
   }
 
@@ -55,7 +57,7 @@ FormPage.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  errors: state.errors
+  errors: state.errors,
 })
 
 export default connect(
