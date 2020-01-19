@@ -22,11 +22,17 @@ const FormPage = (props) => {
   };
 
   const handleSubmit = formData => e => {
+    const { clearErrors, setErrors, setFormInput, history, errors } = props;
+
     e.preventDefault();
-    formData.date = date;
-    props.clearErrors();
-    props.setErrors(setError(formData))
-    props.setFormInput(formData);
+    const dateString = date.toString();
+    formData.date = dateString;
+    clearErrors();
+    setErrors(setError(formData))
+    if(Object.keys(errors).length === 0){
+      setFormInput(formData);
+      history.push('/newpage')
+    }
   }
 
   return(

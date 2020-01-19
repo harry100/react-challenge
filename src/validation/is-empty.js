@@ -8,7 +8,7 @@ const isEmpty = value =>
 const setError = data => {
   let errors = {};
   Object.entries(data).forEach(([key,value])=>{
-    if(isEmpty(value)){
+    if(isEmpty(value) && key !== 'degree' && key !== 'institution' && key !== 'modeOfContact'){
       errors[`${key}`] = `${key} cannot be empty`
     }
   })
