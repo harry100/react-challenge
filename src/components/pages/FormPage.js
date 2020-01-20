@@ -33,7 +33,7 @@ const FormPage = (props) => {
 
     if(Object.keys(validationErrors).length === 0){
       setFormInput(formData);
-      history.push('/newpage');
+      history.push('/user-info');
     }
   }
 
