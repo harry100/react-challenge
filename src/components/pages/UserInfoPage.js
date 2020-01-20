@@ -2,18 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const UserInfoPage = () => {
+//includes
+import UserInfoElements from '../includes/UserInfoElements';
+
+const UserInfoPage = (props) => {
+  const { formData } = props;
+
   return(
     <div>
-      <div class="card text-white bg-info mb-3">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Info card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
+      <UserInfoElements
+        formData={formData}
+      />
     </div>
   )
+}
+
+UserInfoPage.propTypes = {
+  formData: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

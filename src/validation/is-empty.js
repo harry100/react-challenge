@@ -15,4 +15,7 @@ const setError = data => {
   return errors;
 }
 
-export default setError;
+module.exports = {
+  isEmpty,
+  setError
+}

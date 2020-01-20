@@ -1,0 +1,13 @@
+.remove-margin{
+	margin-bottom: 0;
+}
+
+.link-band{
+	display: flex;
+	justify-content: center;
+}
+
+.link-button{
+	padding:  10px;
+	border: 1px solid black;
+}

@@ -12,7 +12,7 @@ import { setErrors, clearErrors } from '../../redux/actions/errorAction';
 import FormElements from '../includes/FormElements';
 
 //validation for empty field
-import setError from '../../validation/is-empty';
+import { setError } from '../../validation/is-empty';
 
 const FormPage = (props) => {
   const [ date, setDate ] = useState('');
