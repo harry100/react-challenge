@@ -5,6 +5,7 @@ const isEmpty = value =>
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0);
 
+//create an error object if error exists
 const setError = data => {
   let errors = {};
   Object.entries(data).forEach(([key,value])=>{

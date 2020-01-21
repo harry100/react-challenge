@@ -1,3 +1,4 @@
+//pages
 import FormPage from './components/pages/FormPage';
 import UserInfoPage from './components/pages/UserInfoPage';
 
